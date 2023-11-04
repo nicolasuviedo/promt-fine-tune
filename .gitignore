@@ -1,0 +1,6 @@
+.venv
+*.ipynb_*
+secrets.py
+*__pycache__
+.vscode
+Makefile
