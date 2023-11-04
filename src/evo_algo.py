@@ -61,6 +61,7 @@ class EvolutionaryAlgorithm:
         """
         pass
 
+
 # Example usage:
 # ea = EvolutionaryAlgorithm(population_size=100, mutation_rate=0.01, crossover_rate=0.7, max_generations=50)
 # ea.run()
