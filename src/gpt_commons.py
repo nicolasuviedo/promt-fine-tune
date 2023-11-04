@@ -2,17 +2,18 @@ import openai
 import json
 from datetime import datetime
 
-OPEN_API_KEY = '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'
+OPEN_API_KEY = "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"
 
 openai.api_key = OPEN_API_KEY
 
-def generate_text(prompt, model='gpt-3.5-turbo', max_tokens=150, n=1, temperature=1.0, meta=None):
-    if model == 'gpt-3.5-turbo':
+
+def generate_text(
+    prompt, model="gpt-3.5-turbo", max_tokens=150, n=1, temperature=1.0, meta=None
+):
+    if model == "gpt-3.5-turbo":
         response = openai.ChatCompletion.create(
             model=model,
-            messages=[
-                {"role": "user", "content": f"{prompt}"},
-            ],
+            messages=[{"role": "user", "content": f"{prompt}"},],
             max_tokens=max_tokens,
             n=n,
             temperature=temperature,
@@ -24,7 +25,7 @@ def generate_text(prompt, model='gpt-3.5-turbo', max_tokens=150, n=1, temperatur
             prompt=prompt,
             max_tokens=max_tokens,
             n=n,
-            temperature=temperature
+            temperature=temperature,
         )
         generated_text = response.choices[0].text.strip()
 
@@ -37,9 +38,9 @@ def generate_text(prompt, model='gpt-3.5-turbo', max_tokens=150, n=1, temperatur
             "model": model,
             "max_tokens": max_tokens,
             "n": n,
-            "temperature": temperature
+            "temperature": temperature,
         },
-        "output": [generated_text]
+        "output": [generated_text],
     }
 
     # Append the information to a file as a dictionary
