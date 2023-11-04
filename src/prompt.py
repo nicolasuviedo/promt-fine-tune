@@ -1,7 +1,5 @@
-from dataclass import dataclass
-from typing import TypeVar, Callable, ClassVar
-from dataclasses import dataclass, 
-
+from typing import TypeVar, Callable, ClassVar, Dict
+from dataclasses import dataclass, field
 
 @dataclass
 class Example:
