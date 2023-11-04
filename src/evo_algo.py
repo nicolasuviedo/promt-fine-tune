@@ -21,7 +21,7 @@ class EvolutionaryAlgorithm:
         to generate the initial population. Depending on the problem, a diverse
         initial population might be advantageous.
         """
-        pass
+        print("Initializing population...")
 
     def evaluate_population(self):
         """
