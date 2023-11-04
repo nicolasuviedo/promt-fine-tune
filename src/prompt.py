@@ -1,5 +1,6 @@
-from typing import TypeVar, Callable, ClassVar, Dict
 from dataclasses import dataclass, field
+from typing import Callable, ClassVar, Dict, List, TypeVar, Union
+
 
 
 @dataclass
@@ -46,7 +47,6 @@ class Prompt:
 
     def __post_init__(self):
         self._params = {"instructions": "", "examples": [], "format": ""}
-
         # Type checking
         assert isinstance(
             self._params["instructions"], str
