@@ -1,6 +1,7 @@
 from typing import TypeVar, Callable, ClassVar, Dict
 from dataclasses import dataclass, field
 
+
 @dataclass
 class Example:
     """
@@ -11,13 +12,18 @@ class Example:
     output: str
     format:ClassVar[Callable] = lambda i,o: f"{i} -> {o}"
     """
+
     input: str
     output: str
-    format:ClassVar[Callable] = lambda i,o: f"{i} -> {o}"
+    format: ClassVar[Callable] = lambda i, o: f"{i} -> {o}"
 
     def __post_init__(self):
-        assert isinstance(self.input, str) and self.input.strip(), "input must be a non-empty string"
-        assert isinstance(self.output, str) and self.output.strip(), "output must be a non-empty string"
+        assert (
+            isinstance(self.input, str) and self.input.strip()
+        ), "input must be a non-empty string"
+        assert (
+            isinstance(self.output, str) and self.output.strip()
+        ), "output must be a non-empty string"
         assert callable(self.format), "format must be a callable function"
 
     def __str__(self):
@@ -34,23 +40,21 @@ class Prompt:
     For example, it could encode binary data, a sequence of parameters, etc.
     The encoding and decoding methods (if necessary) are problem-dependent.
     """
+
     prompt: str
     _params: Dict[str, Union[str, List[Example]]] = field(default_factory=dict)
 
-
     def __post_init__(self):
-        self._params = {
-            'instructions': '',
-            'examples': [],
-            'format': ''
-        }
+        self._params = {"instructions": "", "examples": [], "format": ""}
 
         # Type checking
-        assert isinstance(self._params['instructions'], str), "instructions must be a string"
-        assert all(isinstance(example, Example) for example in self._params['examples']), "examples must be a list of Example objects"
-        assert isinstance(self._params['format'], str), "format must be a string"
-
-   
+        assert isinstance(
+            self._params["instructions"], str
+        ), "instructions must be a string"
+        assert all(
+            isinstance(example, Example) for example in self._params["examples"]
+        ), "examples must be a list of Example objects"
+        assert isinstance(self._params["format"], str), "format must be a string"
 
     def fitness(self):
         """
