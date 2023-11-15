@@ -1,8 +1,6 @@
 from dataclasses import dataclass, field
 from typing import Callable, ClassVar, Dict, List, TypeVar, Union
 
-
-
 @dataclass
 class Example:
     """
@@ -14,9 +12,9 @@ class Example:
     format:ClassVar[Callable] = lambda i,o: f"{i} -> {o}"
     """
 
-    input: str
-    output: str
-    format: ClassVar[Callable] = lambda i, o: f"{i} -> {o}"
+    input: str = field()
+    output: str= field()
+    format: ClassVar[Callable[[str, str],str]] = lambda i, o: f"{i} -> {o}"
 
     def __post_init__(self):
         assert (
@@ -25,10 +23,9 @@ class Example:
         assert (
             isinstance(self.output, str) and self.output.strip()
         ), "output must be a non-empty string"
-        assert callable(self.format), "format must be a callable function"
 
     def __str__(self):
-        return self.format(self.input, self.output)
+        return format(self.input, self.output)
 
 
 @dataclass
